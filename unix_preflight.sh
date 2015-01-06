@@ -18,7 +18,10 @@ sites=(\
   supermarket.getchef.com \
   api.getchef.com \
   api.chef.io \
-  rubygems.org
+  rubygems.org \
+  https:\/\/downloads.chef.io\/chef-dk\/ \
+  https:\/\/www.virtualbox.org\/wiki/Downloads \
+  https:\/\/www.vagrantup.com\/downloads.html
 )
 
 echo "Checking connectivity to Internet sites..."
