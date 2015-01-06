@@ -22,14 +22,12 @@ Are users behind a proxy or other restrictive firewall?
 Verify web connectivity to:
 
 * manage.getchef.com
-* use.cloudshare.com
 * supermarket.getchef.com
 * api.getchef.com
 * rubygems.org
 
 Verify ssh connectivity to:
-* Outbound to use.cloudshare.com / the weird cld.sr domain
-* Outbound to AWS
+* Outbound to AWS/Azure/DO/GCE
 * Verify they can download and extract zip files from manage.getchef.com.
 
 Recommended tests:
