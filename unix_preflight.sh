@@ -20,16 +20,13 @@ sites=(\
   rubygems.org
 )
 
-# echo ${sites[*]}
-
 echo "Checking connectivity to Internet sites..."
 
-col=40
+col=30
 for site in ${sites[*]}; do
   if [ "$(curl -s $site)" ]; then
-    #echo "Checking $site ${green}[OK]${normal}"
-    printf '%-50s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
+    printf '%-40s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
   else
-    printf '%-50s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
+    printf '%-40s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
   fi
 done
