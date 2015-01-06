@@ -15,6 +15,15 @@ normal=$(tput sgr0)
 # Do I have local admin rights?
 [ "$(sudo -l | grep \(ALL\))" ] && hazadmin=true
 
+echo "###############################################################################"
+col=40
+if [ "$hazadmin" == "true" ]; then
+  printf '%-50s%*s%s\n' "Checking sudo rights..." $col "${green}[OK]${normal}"
+else
+  printf '%-50s%*s%s\n' "Checking sudo rights..." $col "${red}[FAIL]${normal}"
+fi
+
+
 # Can I reach these Internet sites
 sites=(\
   google.com \
