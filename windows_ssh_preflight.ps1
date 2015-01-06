@@ -23,7 +23,7 @@
     if($t.Connected)
     {
         $t.Close()
-        $msg = "Port $port is operational"
+        $msg = "Port $port for $hostname is operational"
     }
     else
     {
@@ -33,7 +33,7 @@
     Write-Host $msg
 }
 
-$sshHosts = @('ado-web.cloudapp.net')
+$sshHosts = @('ado-web.cloudapp.net','ado-web.cloudapp.net')
 
 foreach ($element in $sshHosts) {
 
