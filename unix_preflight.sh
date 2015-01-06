@@ -3,6 +3,10 @@
 # vim: ai ts=2 sw=2 et sts=2 ft=sh
 # vim: autoindent tabstop=2 shiftwidth=2 expandtab softtabstop=2 filetype=sh
 
+# Prerequisites:  
+# CentOS:  bind-utils, nc
+# Ubuntu:  dnsutils, netcat
+
 # Set these for colorized output
 red=$(tput setaf 1)
 green=$(tput setaf 2)
@@ -13,10 +17,14 @@ normal=$(tput sgr0)
 
 # Can I reach these Internet sites
 sites=(\
-  manage.getchef.com \
+  google.com \
+  aws.amazon.com \
+  cloud.google.com \
+  rackspace.com \
+  azure.microsoft.com \
+  manage.chef.io \
   use.cloudshare.com \
-  supermarket.getchef.com \
-  api.getchef.com \
+  supermarket.chef.io \
   api.chef.io \
   rubygems.org \
   https:\/\/downloads.chef.io\/chef-dk\/ \
@@ -24,11 +32,29 @@ sites=(\
   https:\/\/www.vagrantup.com\/downloads.html
 )
 
+echo
+echo "###############################################################################"
+echo "Testing DNS resolvers..."
+echo "###############################################################################"
+col=30
+for site in ${sites[*]}; do
+  dig $site 2>&1 >/dev/null
+  if [ $? -eq 0 ]; then
+    printf '%-40s%*s%s\n' "Checking DNS for $site" $col "${green}[OK]${normal}"
+  else
+    printf '%-40s%*s%s\n' "Checking DNS for $site" $col "${red}[FAIL]${normal}"
+  fi
+done
+
+echo
+echo "###############################################################################"
 echo "Checking connectivity to Internet sites..."
+echo "###############################################################################"
 
 col=30
 for site in ${sites[*]}; do
-  if [ "$(curl -s $site)" ]; then
+  curl -s $site 2>&1 >/dev/null
+  if [ $? -eq 0 ]; then
     printf '%-40s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
   else
     printf '%-40s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
