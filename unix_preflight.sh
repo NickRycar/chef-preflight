@@ -26,7 +26,7 @@ sites=(\
   use.cloudshare.com \
   supermarket.chef.io \
   api.chef.io \
-  rubygems.org \
+  rubygems.org
 )
 
 echo
