@@ -4,9 +4,9 @@
 # vim: autoindent tabstop=2 shiftwidth=2 expandtab softtabstop=2 filetype=sh
 
 # Set these for colorized output
-red='\033[1;31m'
-green='\033[1;32m'
-normal='\033[0m'
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+normal=$(tput sgr0)
 
 # Do I have local admin rights?
 [ "$(sudo -l | grep \(ALL\))" ] && hazadmin=true
@@ -24,11 +24,12 @@ sites=(\
 
 echo "Checking connectivity to Internet sites..."
 
+col=40
 for site in ${sites[*]}; do
   if [ "$(curl -s $site)" ]; then
-    #printf( "%-30s %s\n", "Checking $site ${green}[OK]${normal}" );
-    echo test
+    #echo "Checking $site ${green}[OK]${normal}"
+    printf '%-50s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
   else
-    echo "${red}[FAIL]${normal}"
+    printf '%-50s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
   fi
 done
