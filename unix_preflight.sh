@@ -17,6 +17,7 @@ sites=(\
   use.cloudshare.com \
   supermarket.getchef.com \
   api.getchef.com \
+  api.chef.io \
   rubygems.org
 )
 
