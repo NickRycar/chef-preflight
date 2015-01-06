@@ -26,7 +26,10 @@ sites=(\
   use.cloudshare.com \
   supermarket.chef.io \
   api.chef.io \
-  rubygems.org \
+  rubygems.org
+)
+
+urls=(\
   https:\/\/downloads.chef.io\/chef-dk\/ \
   https:\/\/www.virtualbox.org\/wiki/Downloads \
   https:\/\/www.vagrantup.com\/downloads.html
@@ -35,28 +38,39 @@ sites=(\
 echo
 echo "###############################################################################"
 echo "Testing DNS resolvers..."
-echo "###############################################################################"
-col=30
+echo 
+col=40
 for site in ${sites[*]}; do
-  dig $site 2>&1 >/dev/null
+  #dig $site 2>&1 >/dev/null
+  dig $site | grep -v SERVER | grep -q -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
   if [ $? -eq 0 ]; then
-    printf '%-40s%*s%s\n' "Checking DNS for $site" $col "${green}[OK]${normal}"
+    printf '%-50s%*s%s\n' "Checking DNS for $site" $col "${green}[OK]${normal}"
   else
-    printf '%-40s%*s%s\n' "Checking DNS for $site" $col "${red}[FAIL]${normal}"
+    printf '%-50s%*s%s\n' "Checking DNS for $site" $col "${red}[FAIL]${normal}"
   fi
 done
 
 echo
 echo "###############################################################################"
 echo "Checking connectivity to Internet sites..."
-echo "###############################################################################"
+echo 
 
-col=30
+col=40
 for site in ${sites[*]}; do
   curl -s $site 2>&1 >/dev/null
   if [ $? -eq 0 ]; then
-    printf '%-40s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
+    printf '%-50s%*s%s\n' "Checking $site" $col "${green}[OK]${normal}"
   else
-    printf '%-40s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
+    printf '%-50s%*s%s\n' "Checking $site" $col "${red}[FAIL]${normal}"
+  fi
+done
+
+col=40
+for url in ${urls[*]}; do
+  curl -s $url 2>&1 >/dev/null
+  if [ $? -eq 0 ]; then
+    printf '%-50s%*s%s\n' "Checking $url" $col "${green}[OK]${normal}"
+  else
+    printf '%-50s%*s%s\n' "Checking $url" $col "${red}[FAIL]${normal}"
   fi
 done
