@@ -33,4 +33,10 @@
     Write-Host $msg
 }
 
-Test-Port ado-web.cloudapp.net 22
+$sshHosts = @('ado-web.cloudapp.net')
+
+foreach ($element in $sshHosts) {
+
+Test-Port $element 22
+
+}
