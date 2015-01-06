@@ -1,3 +1,7 @@
+Customer responsibility:
+
+Attendees, E-Mail Address, Role (i.e. sysadmin, developer, etc). It is critical to know who is attending, as we are going to verify that ALL attendees are setup properly with the following: (where do we store this information?)
+
 Workstation:
 
 * Do the users have local admin rights to install items to their systems?
@@ -12,7 +16,7 @@ Items recommended
 
 * Vagrant
 * Virtualbox
-* Git (from git-scm.com) [WIndows]
+* Git (from git-scm.com) [Windows]
 
 Are users behind a proxy or other restrictive firewall?
 Verify web connectivity to:
