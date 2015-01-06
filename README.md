@@ -29,7 +29,7 @@ Verify ssh connectivity to:
 * Verify they can download and extract zip files from manage.getchef.com.
 
 Recommended tests:
-* Seth Vargo’s Connectivity Tester: https://github.com/sethvargo/chef-connectivity-test
+* Seth Vargo’s Connectivity Tester: https://github.com/sethvargo/chef-connectivity-test _base upon the outcome of these tests, not actually run this script itself_
 
 * Download and install ChefDK
 * Download starter kit from Hosted Chef.
