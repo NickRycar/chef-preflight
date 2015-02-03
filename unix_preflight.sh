@@ -12,9 +12,14 @@ red=$(tput setaf 1)
 green=$(tput setaf 2)
 normal=$(tput sgr0)
 
+echo
+echo "We are validating your admin privileges."
+echo "Unless you have passwordless sudo enabled on your user account, you will be prompted for your local password."
+
 # Do I have local admin rights?
 [ "$(sudo -l | grep \(ALL\))" ] && hazadmin=true
 
+echo
 echo "###############################################################################"
 col=40
 if [ "$hazadmin" == "true" ]; then
@@ -35,7 +40,8 @@ sites=(\
   use.cloudshare.com \
   supermarket.chef.io \
   api.chef.io \
-  rubygems.org
+  rubygems.org \
+  portquiz.net
 )
 
 urls=(\
@@ -83,3 +89,27 @@ for url in ${urls[*]}; do
     printf '%-50s%*s%s\n' "Checking $url" $col "${red}[FAIL]${normal}"
   fi
 done
+
+# Am I blocked outbound on any of these ports?
+# NOTE: Currently requires that portquiz.net is unblocked. Check for site check failure if this fails to rule out false positive.
+
+ports=(\
+  22 \
+  3389
+  )
+
+echo
+echo "###############################################################################"
+echo "Checking outgoing SSH and RDP ports..."
+echo 
+
+col=40
+for port in ${ports[*]}; do
+  nc -w 1 portquiz.net $port 2>&1 >/dev/null
+  if [ $? -eq 0 ]; then
+    printf '%-50s%*s%s\n' "Checking port $port" $col "${green}[OK]${normal}"
+  else
+    printf '%-50s%*s%s\n' "Checking port $port" $col "${red}[FAIL]${normal}"
+  fi
+done
+

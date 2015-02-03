@@ -21,7 +21,7 @@ fi
 
 # Sanity Check: Do I have gcc and make?
 
-# Define tools here to keep things dry
+# Define tools here to keep things DRY
 tools=(\
   gcc \
   make
