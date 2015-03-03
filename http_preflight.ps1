@@ -1,6 +1,6 @@
 #Do you have http connectivity to:
 $outputfile = "results.txt"
-$request = [System.Net.WebRequest]::Create('http://stackoverflow.com/questions/20259251/powershell-script-to-check-the-status-of-a-url')
+$request = [System.Net.WebRequest]::Create('http://api.chef.io')
 
 $response = $request.GetResponse()
 
