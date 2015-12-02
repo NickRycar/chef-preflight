@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Chef pre-flight test script for Linux and OSX machines
 # vim: ai ts=2 sw=2 et sts=2 ft=sh
 # vim: autoindent tabstop=2 shiftwidth=2 expandtab softtabstop=2 filetype=sh
